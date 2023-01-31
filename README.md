@@ -77,7 +77,7 @@ Durante esta etapa, precisaremos ter o arquivo ISO do macOS Big Sur disponível.
 
 3.1. Primeiro, abra o VirtualBox e selecione a máquina virtual macOS Big Sur recém-criada à esquerda e clique no botão 'Iniciar' na parte superior.
 
-Inicie o macOS Big Sur na imagem do VirtualBox(img/013.png)
+![Inicie o macOS Big Sur na imagem do VirtualBox](img/013.png)
 
 3.2. Seremos solicitados a 'Selecionar disco de inicialização', clique no ícone da pasta à direita
 
