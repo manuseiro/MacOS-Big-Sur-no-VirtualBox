@@ -1,0 +1,36 @@
+Os comandos seguinte é para fins educacionais, use por sua conta e risco.
+
+Isto é para uma instalação do Big Sur no VirtualBox 6.
+Os comandos abaixo têm os nomes "VBoxNAME" e "VBoxPROCESSADOR" como um espaço reservado temporário.
+SUBSTITUA TODOS "VBoxNAME" pelo nome da sua máquina virtual e "VBoxPROCESSADOR" pelo nome do processador compativel. Em seguida, insira-os no prompt de comando.
+
+Comandos a serem usados para o Virtualbox 6
+
+Caso você utilize processador INTEL
+cd "C:\Program Files\Oracle\VirtualBox\"
+VBoxManage.exe modifyvm "VBoxNAME" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac19,1"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Mac-AA95B1DDAB278B95"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+
+Caso você utilize processador AMD
+
+cd "C:\Program Files\Oracle\VirtualBox\" 
+VBoxManage.exe modifyvm "macos" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff 
+VBoxManage setextradata "macos" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac11,3" 
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Mac-AA95B1DDAB278B95"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+VBoxManage modifyvm "macos" --cpu-profile "VBoxPROCESSADOR"
+
+
+Outros tipos de Processadores compativeis:
+Intel Core i7-6700K
+Intel Xeon X5482 3.20GHz
+Intel Core i7-2635QM
+Intel Core i7-3960X
+Intel Core i5-3570
+Intel Core i7-5600U
