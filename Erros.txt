@@ -1,0 +1,27 @@
+PROBLEMA:
+Estou executando o VirtualBox 6.1.32 no Windows 11 de 64 bits e tentando criar minha primeira VM usando o OS Big Sur. Quando inicio a máquina virtual, recebo este erro:
+
+MENSAGEM DE ERRO:
+Failed to open a session for the virtual machine VBoxNAME.
+Failed to query SMC value from the host (VERR_INVALID_HANDLE).
+Result Code: E_FAIL (0x80004005)
+Component: ConsoleWrap
+Interface: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}
+
+Estes são os comandos que obtive para configurá-lo em minha máquina AMD Ryzen 5 3600 6-Core Processor 3,59 GHz:
+
+cd "C:\Program Files\Oracle\VirtualBox\"
+VBoxManage.exe modifyvm "VBoxNAME" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac19,1"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Mac-AA95B1DDAB278B95"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+VBoxManage setextradata "VBoxNAME" "VBoxInternal2/EfiGraphicsResolution 1920x1080
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/TM/TSCMode" "RealTSCOffset"
+VBoxManage modifyvm "VBoxNAME" --cpu-profile "Intel Core i7-6700K"
+
+SOLUCAO:
+Executa o comando abaixo no CMD como Administrador, em seguida reiniciar computador:
+
+bcdedit /set hypervisorlaunchtype off
