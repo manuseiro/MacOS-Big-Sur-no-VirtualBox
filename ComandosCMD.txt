@@ -1,12 +1,13 @@
-Os comandos seguinte é para fins educacionais, use por sua conta e risco.
+OBS: Os comandos seguinte é para fins educacionais, use por sua conta e risco.
 
-Isto é para uma instalação do Big Sur no VirtualBox 6.
+Isto é para uma instalação do Big Sur no VirtualBox 6 ou 7.
 Os comandos abaixo têm os nomes "VBoxNAME" e "VBoxPROCESSADOR" como um espaço reservado temporário.
 SUBSTITUA TODOS "VBoxNAME" pelo nome da sua máquina virtual e "VBoxPROCESSADOR" pelo nome do processador compativel. Em seguida, insira-os no prompt de comando.
 
-Comandos a serem usados para o Virtualbox 6
+Comandos a serem usados para o Virtualbox 6 ou 7
 
-Caso você utilize processador INTEL
+PARA MAQUINAS COM PROCESSADORES INTEL:
+
 cd "C:\Program Files\Oracle\VirtualBox\"
 VBoxManage.exe modifyvm "VBoxNAME" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
 VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac19,1"
@@ -15,7 +16,7 @@ VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiBoardPr
 VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
 
-Caso você utilize processador AMD
+PARA MAQUINAS COM PROCESSADORES AMD:
 
 cd "C:\Program Files\Oracle\VirtualBox\" 
 VBoxManage.exe modifyvm "VBoxNAME" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff 
@@ -26,8 +27,7 @@ VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/DeviceKey"
 VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
 VBoxManage modifyvm "VBoxNAME" --cpu-profile "VBoxPROCESSADOR"
 
-
-Outros tipos de Processadores compativeis:
+PROCESSADORES COMPATIVEIS:
 Intel Core i7-6700K
 Intel Xeon X5482 3.20GHz
 Intel Core i7-2635QM
