@@ -1,4 +1,4 @@
-# Como instalar o MacOS Big Sur no VirtualBox Windows 2023
+# Como instalar o MacOS Big Sur no VirtualBox Windows 10 ou 11
 
 Neste guia, orientaremos você em todas as etapas para instalar o macOS Big Sur no VirtualBox Windows. Mostraremos cada etapa com capturas de tela e um vídeo para orientá-lo visualmente.
 
