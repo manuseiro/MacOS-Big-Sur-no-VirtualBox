@@ -11,7 +11,7 @@ O macOS Big Sur é o 17º lançamento do sistema operacional Mac para computador
 - 8GB RAM
 - 60 GB de espaço livre em disco
 - VirtualBox Oracle VM VirtualBox Extension Pack ([**Baixar**](https://www.virtualbox.org/wiki/Downloads))
-- Arquivo de imagem ISO do MacOS Big Sur ([**Baixar**](https://www.mediafire.com/file/irna8hwybkhl41f/BigSur13-3-1.iso/file)) ou ([Mac App Store Preview](https://apps.apple.com/us/app/macos-big-sur/id1526878132?mt=12)).
+- Arquivo de imagem ISO do MacOS Big Sur ([**MediaFire**](https://www.mediafire.com/file/irna8hwybkhl41f/BigSur13-3-1.iso/file)) ou ([**Mac App Store Preview**](https://apps.apple.com/us/app/macos-big-sur/id1526878132?mt=12)).
 - Comandos no CMD como Administrador
 
 ## 1. Criar Maquina virtual no VirtualBox
