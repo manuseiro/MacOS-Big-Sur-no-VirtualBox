@@ -34,3 +34,8 @@ Intel Core i7-2635QM
 Intel Core i7-3960X
 Intel Core i5-3570
 Intel Core i7-5600U
+
+QUANDO ENCONTRAR O PROBLEMA: "Failed to query SMC value from the host (VERR_INVALID_HANDLE).", execute esta linha de comando no prompt de comando:
+
+
+VBoxManage.exe setextradata "BigSur" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 0
