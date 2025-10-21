@@ -1,10 +1,23 @@
-OBS: Os comandos seguinte é para fins educacionais, use por sua conta e risco.
+Instalação do macOS (Big Sur / Monterey / Ventura / Sonoma) no VirtualBox 6 ou 7
 
-Isto é para uma instalação do Big Sur no VirtualBox 6 ou 7.
-Os comandos abaixo têm os nomes "VBoxNAME" e "VBoxPROCESSADOR" como um espaço reservado temporário.
-SUBSTITUA TODOS "VBoxNAME" pelo nome da sua máquina virtual e "VBoxPROCESSADOR" pelo nome do processador compativel. Em seguida, insira-os no prompt de comando.
+Aviso Legal:
+Este guia é destinado exclusivamente a fins educacionais e de testes.
+A instalação de macOS em hardware que não seja Apple pode violar os termos de licença da Apple (EULA).
+Use por sua conta e risco.
 
-Comandos a serem usados para o Virtualbox 6 ou 7
+Pré-requisitos
+- VirtualBox 6.x ou 7.x instalado (recomendado: versão 7.0.14 ou superior).
+- Imagem do macOS: Big Sur, Monterey, Ventura ou Sonoma.
+- Máquina virtual já criada no VirtualBox (sem iniciar ainda).
+- Processador compatível com virtualização (Intel VT-x ou AMD-V).
+- Permissões de administrador no Windows.
+
+Ajustes no VirtualBox via Prompt de Comando (CMD)
+Abra o Prompt de Comando (como Administrador) e execute os comandos a seguir.
+
+Substitua:
+- VBoxNAME → pelo nome exato da sua VM.
+- VBoxPROCESSADOR → por um dos perfis de CPU compatíveis da lista abaixo.
 
 PARA MAQUINAS COM PROCESSADORES INTEL:
 
@@ -18,24 +31,56 @@ VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/GetKeyFrom
 
 PARA MAQUINAS COM PROCESSADORES AMD:
 
-cd "C:\Program Files\Oracle\VirtualBox\" 
-VBoxManage.exe modifyvm "VBoxNAME" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff 
-VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac19,1" 
+cd "C:\Program Files\Oracle\VirtualBox\"
+VBoxManage.exe modifyvm "VBoxNAME" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac19,1"
 VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
 VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Mac-AA95B1DDAB278B95"
 VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 VBoxManage setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
 VBoxManage modifyvm "VBoxNAME" --cpu-profile "VBoxPROCESSADOR"
 
-PROCESSADORES COMPATIVEIS:
-Intel Core i7-6700K
-Intel Xeon X5482 3.20GHz
-Intel Core i7-2635QM
-Intel Core i7-3960X
-Intel Core i5-3570
-Intel Core i7-5600U
+Perfis EFI e Identificadores de Hardware por Versão do macOS
+Você pode alterar os valores de DmiSystemProduct e DmiBoardProduct conforme a versão do macOS desejada.
+Isto ajuda a evitar erros de inicialização ou problemas de compatibilidade.
 
-QUANDO ENCONTRAR O PROBLEMA: "Failed to query SMC value from the host (VERR_INVALID_HANDLE).", execute esta linha de comando no prompt de comando:
+| Versão              | DmiSystemProduct | DmiBoardProduct        | Modelo Apple equivalente                     |
+| :------------------ | :--------------- | :--------------------- | :------------------------------------------- |
+| **Big Sur (11.x)**  | `iMac19,1`       | `Mac-AA95B1DDAB278B95` | iMac 2019                                    |
+| **Monterey (12.x)** | `iMac20,1`       | `Mac-CFF7D910A743CAAF` | iMac 2020                                    |
+| **Ventura (13.x)**  | `MacBookPro16,1` | `Mac-E1008331FDC96864` | MacBook Pro 2019                             |
+| **Sonoma (14.x)**   | `Mac14,3`        | `Mac-94245B3640C91C81` | MacBook Pro 2023 (Apple Silicon equivalente) |
 
+Dica: Mesmo para AMD, usar MacBookPro16,1 melhora a compatibilidade com Ventura e Sonoma.
 
-VBoxManage.exe setextradata "BigSur" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 0
+Perfis de CPU compatíveis (para o parâmetro VBoxPROCESSADOR)
+
+| Processador                | Recomendado para   | Observações                           |
+| :------------------------- | :----------------- | :------------------------------------ |
+| `Intel Core i7-6700K`      | Big Sur / Monterey | Excelente estabilidade                |
+| `Intel Core i7-8700K`      | Ventura / Sonoma   | Alta compatibilidade                  |
+| `Intel Xeon X5482 3.20GHz` | Big Sur            | Modelo clássico                       |
+| `Intel Core i7-3960X`      | Monterey           | Estável e rápido                      |
+| `Intel Core i5-3570`       | Big Sur            | Compatível                            |
+| `AMD Ryzen 5 3600`         | Monterey / Ventura | Bom desempenho                        |
+| `AMD Ryzen 7 5800X`        | Ventura / Sonoma   | Recomendado                           |
+| `AMD Ryzen 9 5900X`        | Ventura / Sonoma   | Ótima performance                     |
+| `AMD Ryzen 7 7800X3D`      | Sonoma             | Suporte experimental, VirtualBox 7.1+ |
+
+ERROS COMUNS:
+
+1. Erro: Failed to query SMC value from the host (VERR_INVALID_HANDLE)
+  Solução: VBoxManage.exe setextradata "VBoxNAME" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 0
+
+2. Erro: A critical error has occurred while running the virtual machine and the machine execution has been stopped.
+  Solução: Certifique-se de que Hyper-V, VBS e Windows Sandbox estão desativados.
+  Execute: bcdedit /set hypervisorlaunchtype off
+Reinicie o PC.
+
+DICAS:
+
+- Para Ventura e Sonoma, use --cpu-profile "Intel Core i7-8700K" e EFI MacBookPro16,1.
+- Aumente a VRAM para 128 MB e aloque 4+ núcleos de CPU.
+- Use SATA Controller AHCI e chipset ICH9 para melhor compatibilidade.
+- Execute o VirtualBox como Administrador.
+
